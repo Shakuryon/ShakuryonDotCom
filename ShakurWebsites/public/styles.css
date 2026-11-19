@@ -4919,3 +4919,28 @@ body.garden-page::after {
     display: none !important;
   }
 }
+
+/* ==== Garden Background Image (swaps in when assets/garden-bg.webp exists) ==== */
+#gardenBackdrop.has-garden-image {
+  background:
+    linear-gradient(var(--bg-gradient1), var(--bg-gradient2), var(--bg-gradient3)),
+    url("./assets/garden-bg.webp") center / cover no-repeat;
+}
+#gardenBackdrop.has-garden-image > * {
+  display: none !important;
+}
+
+/* ==== Garden Navbar: color follows the garden you're scrolling through ==== */
+.garden-page #navbarCont.scrolled {
+  background-color: var(--nav-garden-end, var(--dark-theme-color));
+  background-image: linear-gradient(
+    135deg,
+    var(--nav-garden-start, var(--dark-theme-color)),
+    var(--nav-garden-end, var(--dark-theme-color))
+  );
+  border-color: var(--nav-garden-accent, var(--accent-color));
+  box-shadow: 0 6px 24px var(--nav-garden-glow, rgba(0, 0, 0, 0));
+  transition:
+    padding 0.4s,
+    border-radius 0.4s;
+}
