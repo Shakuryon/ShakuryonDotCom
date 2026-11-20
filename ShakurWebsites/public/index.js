@@ -235,6 +235,35 @@ document.addEventListener("DOMContentLoaded", () => {
     gardenImage.src = "../assets/garden-bg.webp";
   }
 
+    /* ---- Garden video: only load it when motion makes sense ---- */
+  const gardenVideo = document.getElementById("gardenVideo");
+  if (gardenVideo) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const saveData = navigator.connection && navigator.connection.saveData;
+
+    if (reduceMotion || saveData) {
+      gardenVideo.remove(); // the still image stays
+    } else {
+      gardenVideo.muted = true; // required for autoplay on phones
+      gardenVideo.querySelectorAll("source[data-src]").forEach((source) => {
+        source.src = source.dataset.src;
+      });
+      gardenVideo.load();
+
+      const playGardenVideo = () => {
+        const attempt = gardenVideo.play();
+        if (attempt && attempt.catch) attempt.catch(() => {});
+      };
+
+      gardenVideo.addEventListener("playing", () => gardenVideo.classList.add("is-playing"), { once: true });
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) gardenVideo.pause();
+        else playGardenVideo();
+      });
+      playGardenVideo();
+    }
+  }
+
   /* ---- Navbar color blending ---- */
   const nav = document.getElementById("navbarCont");
   const footer = document.getElementById("footerSection");

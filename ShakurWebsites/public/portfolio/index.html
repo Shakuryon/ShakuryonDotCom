@@ -394,6 +394,22 @@
 <!-- ==== Garden Backdrop (Portfolio Only) ==== -->
 
 <div id="gardenBackdrop" aria-hidden="true">
+        <!-- ==== Garden Video (Boomerang Loop) ==== -->
+
+    <video
+        id="gardenVideo"
+        class="garden-video"
+        poster="../assets/garden-bg.webp"
+        muted
+        loop
+        playsinline
+        preload="none"
+        disablepictureinpicture
+        tabindex="-1"
+    >
+        <source data-src="../assets/garden-bg.webm" type="video/webm">
+        <source data-src="../assets/garden-bgVIDEOLOOP.mp4" type="video/mp4">
+    </video>
 
     <div class="garden-sun"></div>
 
@@ -482,7 +498,7 @@
 
 <!-- ==== Garden Music ==== -->
 
-<audio id="gardenMusic" src="../assets/audio/garden-theme.mp3" preload="none" loop></audio>
+<audio id="gardenMusic" src="../assets/audio/gardenMUSIC.mp3" preload="none" loop></audio>
 
 <button id="gardenMusicToggle" class="garden-music-toggle" type="button" aria-pressed="false" hidden>
     <span class="garden-music-bars" aria-hidden="true">
